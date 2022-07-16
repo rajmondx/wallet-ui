@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DarkModeService } from 'angular-dark-mode';
 import { Observable } from 'rxjs';
+import { DesignService } from '../../services/design.service';
+
 
 @Component({
   selector: 'app-navigation-bar',
@@ -9,42 +10,23 @@ import { Observable } from 'rxjs';
 })
 export class NavigationBarComponent implements OnInit {
 
-  darkMode$: Observable<boolean> = this.darkModeService.darkMode$;
+  /** is menu/navigation bar toggled */
   menuToggled = true;
 
-  constructor(private darkModeService: DarkModeService) {
+  darkMode$: Observable<boolean> = this.designService.darkMode$;
+
+  constructor(private designService: DesignService) {
   }
 
-
-  ngOnInit() {
-    this.darkModeService.disable();
-    //this.darkMode();
+  ngOnInit(): void {
   }
 
-  /*darkMode() {
-    // set light or dark mode according to user setting
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      this.darkModeService.enable();
-    } else {
-      this.darkModeService.disable();
-    }
-    // change mode when settings change
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-      const newColorScheme = event.matches ? 'dark' : 'light';
-      if (newColorScheme === 'dark') {
-        this.darkModeService.enable();
-      } else {
-        this.darkModeService.disable();
-      }
-    });
-  }*/
-
+  /** open/close navigation bar*/
   toggleMenu() {
     this.menuToggled = !this.menuToggled;
   }
 
   toggleDarkmode() {
-    //this.darkModeService.toggle();
+    this.designService.toggleDarkmode();
   }
-
 }
