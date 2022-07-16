@@ -1,0 +1,25 @@
+<mat-toolbar class="fadeIn">
+  <mat-toolbar-row>
+    <button routerLink="/" mat-flat-button>
+      <mat-icon>home</mat-icon>
+      X-Wallet
+    </button>
+
+    <button routerLink="/register" mat-flat-button color="accent">Register</button>
+    <span class="space-between"></span>
+    <button mat-icon-button>
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>share</mat-icon>
+    </button>
+    <button mat-icon-button (click)="toggleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar-row>
+  <mat-toolbar-row *ngIf="menuToggled">
+    <span>DarkMode</span>
+    <span class="space-between"></span>
+    <mat-slide-toggle [checked]="darkMode$ | async" (change)="toggleDarkmode()"></mat-slide-toggle>
+  </mat-toolbar-row>
+</mat-toolbar>
